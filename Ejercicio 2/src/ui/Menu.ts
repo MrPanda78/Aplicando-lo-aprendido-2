@@ -2,7 +2,7 @@ import promptSync from 'prompt-sync';
 import { Task, TaskStatus, TaskDifficulty } from '../models/Task';
 import { getDifficulty, getFilteredTasks, getStatus, getTasks, getTaskIndexByTitle, taskService } from '../services/TaskService';
 import { ErrorMessages, showErrorMessage, setErrorMessage } from '../utils/ErrorMessages';
-import { isNumber } from "../utils/Validators";
+import { isNumber, isValidDate } from "../utils/Validators";
 
 const prompt = promptSync();
 
@@ -223,7 +223,40 @@ const createNewTask = (): void => {
     const description: string = prompt("2. Ingresa la descripción: ");
     const status: string = prompt("3. Estado ([P]endiente / [E]n curso / [T]erminada / [C]ancelada): ");
     const difficulty: number = Number(prompt("4. Dificultad ([1] / [2] / [3]): ")) as TaskDifficulty;
-    const expiration: string = prompt("5. Vencimiento: ");
+    let expiration: string = prompt("5. Vencimiento: ");
+
+    // En caso de encontrar una fecha errónea, insistir al usuario introducir una correcta
+    while(!isValidDate(expiration))
+    {
+        setErrorMessage(ErrorMessages.invalidDate);
+
+        console.clear(); // Limpiar consola
+        showErrorMessage(); // Mostrar error
+        console.log("Estás creando una nueva tarea.\n");
+        
+        console.log("1. Ingresa el título: " + title);
+        console.log("2. Ingresa la descripción: " + description);
+        console.log("3. Estado ([P]endiente / [E]n curso / [T]erminada / [C]ancelada): " + status);
+        console.log("4. Dificultad ([1] / [2] / [3]): " + difficulty);
+        expiration = prompt("5. Vencimiento: ");
+
+        // Si el usuario ingresó una fecha correcta, sale del bucle
+        if (isValidDate(expiration))
+        {
+            console.clear(); // Limpiar consola
+            setErrorMessage("");
+
+            console.log("Estás creando una nueva tarea.\n");
+            
+            console.log("1. Ingresa el título: " + title);
+            console.log("2. Ingresa la descripción: " + description);
+            console.log("3. Estado ([P]endiente / [E]n curso / [T]erminada / [C]ancelada): " + status);
+            console.log("4. Dificultad ([1] / [2] / [3]): " + difficulty);
+            console.log("5. Vencimiento: " + expiration);
+
+            break; // Romper bucle
+        }
+    }
 
     /*
         Agregar datos de la nueva tarea al array

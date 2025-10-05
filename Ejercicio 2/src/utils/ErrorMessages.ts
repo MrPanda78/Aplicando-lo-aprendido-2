@@ -1,6 +1,7 @@
 let ErrorMessage: string = "";
 
 export const ErrorMessages = {
+    invalidDate: "ERROR: ¡Por favor, ingrese una fecha del formato DD/MM/AAAA",
     invalidOption: "ERROR: ¡Por favor, ingrese un número válido entre 1 y 4!",
     noTasks: "ERROR: No hay tareas disponibles para mostrar.",
     notFound: "ERROR: La tarea que intentas ver no existe.",
