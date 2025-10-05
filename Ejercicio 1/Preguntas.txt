@@ -1,0 +1,43 @@
+1. Generalización simbólica
+
+Las reglas escritas de TypeScript en el paradigma estructurado son:
+
+Sintaxis basada en JavaScript: bloques de código con {}, instrucciones terminadas en ;, estructuras de control (if, else, switch, for, while, do-while).
+
+Tipos estáticos opcionales: variables, parámetros y funciones pueden tener anotaciones de tipo (number, string, boolean, void, any, etc.).
+
+Funciones como unidad básica de estructuración: permiten modularidad, alcance de variables (scope local/global) y retorno de valores.
+
+Reglas de tipado:
+
+Inferencia de tipos (el compilador deduce el tipo si no se declara).
+
+Comprobación de tipos en tiempo de compilación.
+
+Compatibilidad con JavaScript: cualquier código válido de JavaScript también lo es en TypeScript.
+
+Restricciones de control de flujo: no se permiten saltos incontrolados (ej. goto no existe).
+
+En resumen: las reglas están escritas en la especificación del lenguaje + sistema de tipos, que acota y formaliza el comportamiento de JavaScript bajo un paradigma más estricto y estructurado.
+
+2. Creencias de los profesionales
+
+Lo que se cree y valora en la comunidad de programadores de TypeScript (en contexto estructurado):
+
+Mayor seguridad que JavaScript: se cree que el tipado estático evita errores comunes (como pasar un string donde se esperaba un number).
+
+Mejor mantenibilidad: los programas escritos con tipos explícitos son más fáciles de leer, documentar y refactorizar.
+
+Detección temprana de errores: gracias al compilador, se capturan fallos antes de ejecutar el programa.
+
+Compatibilidad sin fricción: la posibilidad de escribir TypeScript y compilarlo a JavaScript estándar es vista como una ventaja frente a otros lenguajes tipados que no tienen esa interoperabilidad.
+
+Escalabilidad: aunque se puede usar de forma simple, los desarrolladores creen que ayuda a crecer proyectos sin perder control sobre el código.
+
+En el paradigma estructurado, los programadores valoran sobre todo:
+
+La claridad en el flujo de control (estructuras bien definidas).
+
+La modularidad lograda con funciones y tipos.
+
+La confianza que brinda el sistema de tipos sobre el comportamiento de las funciones y los datos.

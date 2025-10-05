@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "es2016",        /* Nivel de JavaScript de salida */
+    "module": "commonjs",      /* Sistema de módulos */
+    "outDir": "./dist",        /* Directorio de salida para archivos JavaScript */
+    "rootDir": "./src",        /* Directorio donde estarán tus archivos TypeScript */
+    "strict": true,            /* Habilita comprobaciones estrictas de tipos */
+    "esModuleInterop": true    /* Habilita interoperabilidad entre módulos */
+  }
+}
