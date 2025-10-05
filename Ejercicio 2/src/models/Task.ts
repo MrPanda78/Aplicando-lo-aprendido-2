@@ -13,4 +13,5 @@ export interface Task {
 
 export interface TaskOptions {
     addTask(task: Omit<Task, "creation" | "lastEdition">): void;
+    searchTask(title: string): Task[];
 }

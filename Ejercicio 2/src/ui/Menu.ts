@@ -63,8 +63,71 @@ const showTask = (index: number): void => {
     }
 }
 
+const searchTaskByTitle = () => {
+    const allTasks = getTasks(); // Copia del array original
+
+    if (allTasks.length === 0) // Si no hay tareas, vuelve al menú principal
+    {
+        setErrorMessage(ErrorMessages.noTasks);
+        showMainMenu();
+        return;
+    }
+    console.clear(); // Limpiar consola
+    console.log("Introduce el título de una Tarea para buscarla:");
+    const title = prompt("> ");
+    const lowerTitle = title.toLowerCase(); // Transformar el título a buscar en minúscula
+    
+    const matches: Task[] = taskService.searchTask(lowerTitle); // Array donde se guardarán las tareas que coincidan con nuestra búsqueda
+
+    // No se encontró ninguna tarea con el título deseado
+    if (matches.length === 0)
+    {
+        setErrorMessage(ErrorMessages.noTitle);
+        showMainMenu();
+        return;
+    }
+
+    console.log("\nEstas son las tareas relacionadas:\n");
+
+    // Mostramos todas las tareas que se encontró
+    for (let i = 0; i < matches.length; i++)
+    {
+        console.log(` [${i + 1}] ${matches[i].title}`);
+    }
+
+    console.log("\n¿Deseas ver los detalles de alguna?");
+    console.log("Introduce el número para verla o 0 (cero) para volver.");
+    const task = prompt("> ");
+
+    if (!isNumber(task))
+    {
+        setErrorMessage(ErrorMessages.notFound);
+        showMainMenu();
+        return;
+    }
+    const taskParsed = Number(task);
+
+    if (taskParsed === 0) // Volver al menú principal
+    {
+        setErrorMessage("");
+        showMainMenu();
+        return;
+    }
+    if (taskParsed < 1 || taskParsed > matches.length) // Se ingresó una tarea que no existe
+    {
+        setErrorMessage(ErrorMessages.notFound);
+        showMainMenu();
+        return;
+    }
+    setErrorMessage("");
+    console.clear(); // Limpiar consola
+    showTask(getTaskIndexByTitle(allTasks, matches[taskParsed - 1].title)); // Mostrar detalles de la tarea elegida
+}
+
 const showTasks = (): void => {
-    if (getTasks().length === 0)
+    const allTasks = getTasks(); // Copia del array original
+
+    if (allTasks.length === 0) // Si no hay tareas, vuelve al menú principal
     {
         setErrorMessage(ErrorMessages.noTasks);
         showMainMenu();
@@ -95,11 +158,11 @@ const showTasks = (): void => {
     let filtered: Task[] = []; // Tareas filtradas
     switch(menuParsed)
     {
-        case 1: filtered = getTasks(); break;
-        case 2: filtered = getFilteredTasks("P", getTasks()); break;
-        case 3: filtered = getFilteredTasks("E", getTasks()); break;
-        case 4: filtered = getFilteredTasks("T", getTasks()); break;
-        case 5: filtered = getFilteredTasks("C", getTasks()); break;
+        case 1: filtered = allTasks; break;
+        case 2: filtered = getFilteredTasks("P", allTasks); break;
+        case 3: filtered = getFilteredTasks("E", allTasks); break;
+        case 4: filtered = getFilteredTasks("T", allTasks); break;
+        case 5: filtered = getFilteredTasks("C", allTasks); break;
         case 0: break;
     }
 
@@ -148,7 +211,7 @@ const showTasks = (): void => {
     }
     setErrorMessage("");
     console.clear(); // Limpiar consola
-    showTask(getTaskIndexByTitle(getTasks(), filtered[taskParsed - 1].title)); // Mostrar detalles de la tarea
+    showTask(getTaskIndexByTitle(allTasks, filtered[taskParsed - 1].title)); // Mostrar detalles de la tarea
 }
 
 const createNewTask = (): void => {
@@ -214,7 +277,7 @@ export const showMainMenu = (): void => {
         case 2:
         {
             setErrorMessage("");
-            //searchTask();
+            searchTaskByTitle();
             break;
         }
         case 3:

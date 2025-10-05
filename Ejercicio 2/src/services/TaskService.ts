@@ -93,5 +93,18 @@ export const taskService: TaskOptions = {
         const now = today(); // Obtener la fecha actual en el momento de creación
         tasks.push({ ...task, creation: now, lastEdition: now }); // Agregar tarea nueva al array "tasks"
         sortTasksByTitle(tasks) // Ordenar alfabéticamente cada tarea por título al agregar una nueva
+    },
+    searchTask: (title: string) => {
+        const matches: Task[] = [] // Array donde se guardarán las coincidencias
+        
+        for (let i = 0; i < tasks.length; i++)
+        {
+            const t = tasks[i]; // Copia de una tarea por iteración mediante posición "i"
+            if (t.title.toLowerCase().indexOf(title) !== -1)
+            {
+                matches.push(t); // Agregamos la tarea que contenga el título deseado al array "matches"
+            }
+        }
+        return matches; // Devolvemos el array de arriba con las tareas encontradas
     }
 };
