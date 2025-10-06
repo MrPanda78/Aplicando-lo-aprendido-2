@@ -1,6 +1,6 @@
 # 🚀 Mi Proyecto en TypeScript
 
-Este es un proyecto escrito en **TypeScript** creado por el alumno **Néstor Santiago Oliva Gómez**
+Este es un proyecto escrito en **TypeScript** creado por los alumnos **Néstor Santiago Oliva Gómez** y **Gianella Melania Lazarini Cardona**,
 que se compila a **JavaScript**. Incluye un ejemplo práctico con entrada de usuario y manejo de fechas.
 
 ---
@@ -21,6 +21,7 @@ Clonar el repositorio e instalar dependencias:
 ```bash
 git clone https://github.com/tu-usuario/tu-repo.git
 cd tu-repo
+cd "Ejercicio 2"
 npm install
 ```
 
